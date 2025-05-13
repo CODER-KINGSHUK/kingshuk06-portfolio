@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <div className="profile-outline w-64 h-64 md:w-80 md:h-80 opacity-0 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
               <img 
-                src="/placeholder.svg" 
+                src="/lovable-uploads/f7317a73-01d2-44fa-ae21-bccf7996d73f.png" 
                 alt="Kingshuk's Profile" 
                 className="rounded-full object-cover w-full h-full"
               />
