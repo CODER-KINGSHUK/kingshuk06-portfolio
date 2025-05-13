@@ -25,16 +25,16 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col-reverse md:flex-row items-center justify-between">
           <div className="w-full md:w-1/2 mt-10 md:mt-0">
             <div className="opacity-0 animate-fadeUp" style={{ animationDelay: '0.3s' }}>
-              <h2 className="text-xl md:text-2xl mb-4 text-primary opacity-0 animate-fadeUp" style={{ animationDelay: '0.4s' }}>Hello, I'm</h2>
-              <h1 className="hero-name gradient-text mb-4 opacity-0 animate-fadeUp" style={{ animationDelay: '0.5s' }}>KINGSHUK</h1>
+              <h2 className="text-xl md:text-2xl mb-4 text-primary">Hello, I'm</h2>
+              <h1 className="hero-name gradient-text mb-4">KINGSHUK</h1>
               
               <div className="h-8 md:h-10 mb-6">
-                <p className="text-xl md:text-2xl font-light animate-glow opacity-0 animate-fadeUp" style={{ animationDelay: '0.6s' }}>
+                <p className="text-xl md:text-2xl font-light animate-glow">
                   {roles[currentRole]}
                 </p>
               </div>
               
-              <p className="text-lg text-gray-300 mb-8 opacity-0 animate-fadeUp max-w-xl" style={{ animationDelay: '0.7s' }}>
+              <p className="text-lg text-gray-300 mb-8 opacity-0 animate-fadeUp max-w-xl" style={{ animationDelay: '0.6s' }}>
                 A commerce student with a passion for design and development. 
                 Creating digital experiences that blend creativity with functionality.
               </p>
