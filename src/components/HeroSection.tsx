@@ -25,16 +25,16 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col-reverse md:flex-row items-center justify-between">
           <div className="w-full md:w-1/2 mt-10 md:mt-0">
             <div className="opacity-0 animate-fadeUp" style={{ animationDelay: '0.3s' }}>
-              <h2 className="text-xl md:text-2xl mb-4 text-primary opacity-0 animate-fadeUp" style={{ animationDelay: '0.4s' }}>Hello, I'm</h2>
-              <h1 className="hero-name gradient-text mb-4 opacity-0 animate-fadeUp" style={{ animationDelay: '0.5s' }}>KINGSHUK</h1>
+              <h2 className="text-xl md:text-2xl mb-4 text-primary">Hello, I'm</h2>
+              <h1 className="hero-name gradient-text mb-4">KINGSHUK</h1>
               
               <div className="h-8 md:h-10 mb-6">
-                <p className="text-xl md:text-2xl font-light animate-glow opacity-0 animate-fadeUp" style={{ animationDelay: '0.6s' }}>
+                <p className="text-xl md:text-2xl font-light animate-glow">
                   {roles[currentRole]}
                 </p>
               </div>
               
-              <p className="text-lg text-gray-300 mb-8 opacity-0 animate-fadeUp max-w-xl" style={{ animationDelay: '0.7s' }}>
+              <p className="text-lg text-gray-300 mb-8 opacity-0 animate-fadeUp max-w-xl" style={{ animationDelay: '0.6s' }}>
                 A commerce student with a passion for design and development. 
                 Creating digital experiences that blend creativity with functionality.
               </p>
@@ -57,12 +57,21 @@ const HeroSection: React.FC = () => {
           </div>
           
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="profile-outline w-64 h-64 md:w-80 md:h-80 opacity-0 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
-              <img 
-                src="/lovable-uploads/f7317a73-01d2-44fa-ae21-bccf7996d73f.png" 
-                alt="Kingshuk's Profile" 
-                className="rounded-full object-cover w-full h-full"
-              />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 opacity-0 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
+              {/* Black background circle */}
+              <div className="absolute inset-0 bg-black rounded-full"></div>
+              
+              {/* Cyan circle animation */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-spin-slow opacity-70"></div>
+              
+              {/* Profile image */}
+              <div className="absolute inset-2 overflow-hidden rounded-full">
+                <img 
+                  src="/lovable-uploads/f7317a73-01d2-44fa-ae21-bccf7996d73f.png" 
+                  alt="Kingshuk's Profile" 
+                  className="object-cover w-full h-full rounded-full"
+                />
+              </div>
             </div>
           </div>
         </div>

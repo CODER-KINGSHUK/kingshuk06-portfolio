@@ -6,14 +6,12 @@ import { Menu, X } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
 
-    setMounted(true);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,7 +22,7 @@ const Navbar: React.FC = () => {
       scrolled ? "bg-background/80 backdrop-blur-md py-3" : "py-5"
     )}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className={`signature ${mounted ? 'animate-fadeIn opacity-0' : ''}`} style={{ animationDelay: '0.2s' }}>
+        <div className="signature animate-fadeIn opacity-0" style={{ animationDelay: '0.2s' }}>
           Kingshuk
         </div>
         
@@ -42,7 +40,7 @@ const Navbar: React.FC = () => {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className={`nav-link text-foreground hover:text-primary transition-colors ${mounted ? 'animate-fadeIn opacity-0' : ''}`}
+              className="nav-link text-foreground hover:text-primary transition-colors animate-fadeIn opacity-0"
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
             >
               {item}
@@ -53,14 +51,13 @@ const Navbar: React.FC = () => {
       
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg animate-fadeIn">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            {['Home', 'About', 'Skills', 'Contact'].map((item, index) => (
+            {['Home', 'About', 'Skills', 'Contact'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`nav-link text-foreground hover:text-primary py-2 transition-colors animate-fadeIn opacity-0`}
-                style={{ animationDelay: `${0.1 + index * 0.1}s` }}
+                className="nav-link text-foreground hover:text-primary py-2 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {item}
