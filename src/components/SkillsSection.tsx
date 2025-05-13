@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Html, FileImage, Figma, Film, Github, FileCode } from 'lucide-react'; 
+import { Code, Image, Figma, Film, Github, FileCode } from 'lucide-react'; 
 
 interface Skill {
   name: string;
@@ -75,8 +75,8 @@ const SkillsSection: React.FC = () => {
               >
                 <div className="tool-icon mb-2">
                   <span className="lucide-icon">
-                    {tool.icon === "html" && <Html size={24} className="text-primary" />}
-                    {tool.icon === "image" && <FileImage size={24} className="text-primary" />}
+                    {tool.icon === "html" && <Code size={24} className="text-primary" />}
+                    {tool.icon === "image" && <Image size={24} className="text-primary" />}
                     {tool.icon === "figma" && <Figma size={24} className="text-primary" />}
                     {tool.icon === "film" && <Film size={24} className="text-primary" />}
                     {tool.icon === "adobe-photoshop" && 
