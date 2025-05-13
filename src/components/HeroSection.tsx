@@ -57,12 +57,21 @@ const HeroSection: React.FC = () => {
           </div>
           
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="profile-outline w-64 h-64 md:w-80 md:h-80 opacity-0 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
-              <img 
-                src="/lovable-uploads/f7317a73-01d2-44fa-ae21-bccf7996d73f.png" 
-                alt="Kingshuk's Profile" 
-                className="rounded-full object-cover w-full h-full"
-              />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 opacity-0 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
+              {/* Black background circle */}
+              <div className="absolute inset-0 bg-black rounded-full"></div>
+              
+              {/* Cyan circle animation */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-spin-slow opacity-70"></div>
+              
+              {/* Profile image */}
+              <div className="absolute inset-2 overflow-hidden rounded-full">
+                <img 
+                  src="/lovable-uploads/f7317a73-01d2-44fa-ae21-bccf7996d73f.png" 
+                  alt="Kingshuk's Profile" 
+                  className="object-cover w-full h-full rounded-full"
+                />
+              </div>
             </div>
           </div>
         </div>
