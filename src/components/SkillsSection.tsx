@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Code, Image, Figma, Film, Github, FileCode } from 'lucide-react'; 
 
@@ -18,17 +18,17 @@ const skills: Skill[] = [
 
 const SkillsSection: React.FC = () => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true
+    threshold: 0.1,
+    triggerOnce: false
   });
 
   return (
     <section id="skills" className="py-20 bg-background">
       <div className="container px-4 mx-auto" ref={ref}>
-        <div className={`text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+        <div className={`text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-2">My <span className="gradient-text">Skills</span></h2>
           <div className="w-20 h-1 bg-primary mx-auto"></div>
-          <p className="text-gray-300 mt-6 max-w-2xl mx-auto">
+          <p className={`text-gray-300 mt-6 max-w-2xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '200ms' }}>
             I've developed a diverse set of skills that allow me to create engaging digital experiences.
             Here's a snapshot of my technical and creative capabilities.
           </p>
@@ -38,7 +38,7 @@ const SkillsSection: React.FC = () => {
           {skills.map((skill, index) => (
             <div 
               key={skill.name}
-              className={`transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
+              className={`transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="flex justify-between mb-2">
@@ -48,14 +48,17 @@ const SkillsSection: React.FC = () => {
               <div className="skill-bar">
                 <div 
                   className="skill-progress" 
-                  style={{ width: inView ? `${skill.percentage}%` : '0%' }}
+                  style={{ 
+                    width: inView ? `${skill.percentage}%` : '0%',
+                    transition: `width 1s ease-out ${index * 0.2}s`
+                  }}
                 ></div>
               </div>
             </div>
           ))}
         </div>
         
-        <div className={`transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '500ms' }}>
+        <div className={`transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '500ms' }}>
           <h3 className="text-2xl font-semibold mb-8 text-center">Tools & Technologies</h3>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
@@ -70,7 +73,7 @@ const SkillsSection: React.FC = () => {
             ].map((tool, index) => (
               <div 
                 key={tool.name}
-                className={`flex flex-col items-center transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
+                className={`flex flex-col items-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${600 + index * 100}ms` }}
               >
                 <div className="tool-icon mb-2">

@@ -1,22 +1,22 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
 const AboutSection: React.FC = () => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true
+    threshold: 0.1,
+    triggerOnce: false
   });
 
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-background to-card">
       <div className="container px-4 mx-auto" ref={ref}>
-        <div className={`text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+        <div className={`text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-2">About <span className="gradient-text">Me</span></h2>
           <div className="w-20 h-1 bg-primary mx-auto"></div>
         </div>
         
-        <div className={`flex flex-col md:flex-row items-center justify-between transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '200ms' }}>
+        <div className={`flex flex-col md:flex-row items-center justify-between transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '200ms' }}>
           <div className="w-full md:w-1/2 mb-10 md:mb-0">
             <h3 className="text-xl md:text-2xl font-semibold mb-4">Commerce Student with Creative Passion</h3>
             <p className="text-gray-300 mb-6">
@@ -31,26 +31,26 @@ const AboutSection: React.FC = () => {
           </div>
           
           <div className="w-full md:w-5/12">
-            <div className="bg-card p-6 rounded-lg border border-border">
+            <div className={`bg-card p-6 rounded-lg border border-border transition-all duration-1000 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`} style={{ transitionDelay: '400ms' }}>
               <h3 className="text-xl font-semibold mb-4 text-primary">Personal Details</h3>
               
               <div className="space-y-4">
-                <div className="grid grid-cols-3">
+                <div className={`grid grid-cols-3 transition-all duration-500 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '500ms' }}>
                   <span className="text-gray-400">Education:</span>
                   <span className="col-span-2">Class 11 Commerce</span>
                 </div>
                 
-                <div className="grid grid-cols-3">
+                <div className={`grid grid-cols-3 transition-all duration-500 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '600ms' }}>
                   <span className="text-gray-400">Phone:</span>
                   <span className="col-span-2">+919883125072</span>
                 </div>
                 
-                <div className="grid grid-cols-3">
+                <div className={`grid grid-cols-3 transition-all duration-500 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '700ms' }}>
                   <span className="text-gray-400">Email:</span>
                   <span className="col-span-2 break-words">kingshukpaulchowdhury@gmail.com</span>
                 </div>
                 
-                <div className="grid grid-cols-3">
+                <div className={`grid grid-cols-3 transition-all duration-500 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '800ms' }}>
                   <span className="text-gray-400">Language:</span>
                   <span className="col-span-2">English, Hindi, Bengali</span>
                 </div>
