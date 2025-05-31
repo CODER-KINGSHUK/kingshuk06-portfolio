@@ -2,12 +2,61 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Phone, Mail } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const ContactSection: React.FC = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: false
   });
+
+  const { toast } = useToast();
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>();
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const formData = new FormData();
+      formData.append('access_key', '8ba6ece2-6acd-422d-a64b-4bc74930ed90');
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('message', data.message);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. I'll get back to you soon!",
+        });
+        reset();
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-card">
@@ -99,44 +148,62 @@ const ContactSection: React.FC = () => {
           <div className={`transition-all duration-1000 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`} style={{ transitionDelay: '400ms' }}>
             <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
             
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className={`transition-all duration-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{ transitionDelay: '500ms' }}>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                <input 
-                  type="text" 
+                <Label htmlFor="name" className="text-gray-300">Name</Label>
+                <Input 
+                  {...register('name', { required: 'Name is required' })}
                   id="name" 
                   className="w-full bg-background border border-border rounded-lg p-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" 
                   placeholder="Your Name"
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                )}
               </div>
               
               <div className={`transition-all duration-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{ transitionDelay: '600ms' }}>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                <input 
+                <Label htmlFor="email" className="text-gray-300">Email</Label>
+                <Input 
+                  {...register('email', { 
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Invalid email address'
+                    }
+                  })}
                   type="email" 
                   id="email" 
                   className="w-full bg-background border border-border rounded-lg p-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" 
                   placeholder="Your Email"
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                )}
               </div>
               
               <div className={`transition-all duration-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{ transitionDelay: '700ms' }}>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                <textarea 
+                <Label htmlFor="message" className="text-gray-300">Message</Label>
+                <Textarea 
+                  {...register('message', { required: 'Message is required' })}
                   id="message" 
                   rows={5}
                   className="w-full bg-background border border-border rounded-lg p-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" 
                   placeholder="Your Message"
-                ></textarea>
+                />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                )}
               </div>
               
-              <button 
+              <Button 
                 type="submit"
+                disabled={isSubmitting}
                 className={`px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/80 transition-all duration-500 w-full md:w-auto ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 style={{ transitionDelay: '800ms' }}
               >
-                Send Message
-              </button>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
             </form>
           </div>
         </div>
