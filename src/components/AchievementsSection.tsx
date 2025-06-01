@@ -23,17 +23,17 @@ const AchievementsSection: React.FC = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className={`max-w-2xl transition-all duration-1000 ${inView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`} style={{ transitionDelay: '400ms' }}>
+          <div className={`max-w-lg transition-all duration-1000 ${inView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`} style={{ transitionDelay: '400ms' }}>
             <div className="bg-card rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-center">Certificate of Completion</h3>
+              <h3 className="text-lg font-semibold mb-4 text-center">Certificate of Figma</h3>
               <div 
                 className="cursor-pointer rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
                 onClick={() => setIsImageOpen(true)}
               >
                 <img 
                   src="/lovable-uploads/e434df27-e3de-408e-ac85-02e81c07110c.png"
-                  alt="Introduction to Figma Certificate"
-                  className="w-full h-auto rounded-lg shadow-md"
+                  alt="Certificate of Figma"
+                  className="w-full h-auto rounded-lg shadow-md max-w-sm mx-auto"
                 />
               </div>
               <p className="text-gray-400 text-center mt-4">Click to view in full screen</p>
@@ -55,7 +55,7 @@ const AchievementsSection: React.FC = () => {
               </button>
               <img 
                 src="/lovable-uploads/e434df27-e3de-408e-ac85-02e81c07110c.png"
-                alt="Introduction to Figma Certificate - Full View"
+                alt="Certificate of Figma - Full View"
                 className="max-w-full max-h-full object-contain p-4"
               />
             </div>
