@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { X } from 'lucide-react';
-import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 const AchievementsSection: React.FC = () => {
   const [isImageOpen, setIsImageOpen] = useState(false);
@@ -43,21 +43,31 @@ const AchievementsSection: React.FC = () => {
 
         {/* Full Screen Image Modal */}
         <Dialog open={isImageOpen} onOpenChange={setIsImageOpen}>
-          <DialogContent className="max-w-none w-screen h-screen p-0 bg-black/95">
-            <DialogOverlay className="bg-black/95" />
-            <div className="relative w-full h-full flex items-center justify-center">
+          <DialogContent className="max-w-none w-full h-full p-0 bg-black/95 border-none">
+            <div className="relative w-full h-full flex items-center justify-center p-4">
+              {/* Custom Close Button */}
               <button
                 onClick={() => setIsImageOpen(false)}
-                className="absolute top-4 right-4 z-50 p-2 bg-background/80 hover:bg-background rounded-full transition-colors duration-200"
+                className="absolute top-6 right-6 z-50 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all duration-200 group"
                 aria-label="Close full screen view"
               >
-                <X className="w-6 h-6" />
+                <X className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
               </button>
-              <img 
-                src="/lovable-uploads/e434df27-e3de-408e-ac85-02e81c07110c.png"
-                alt="Certificate of Figma - Full View"
-                className="max-w-full max-h-full object-contain p-4"
-              />
+              
+              {/* Responsive Image Container */}
+              <div className="w-full h-full flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/e434df27-e3de-408e-ac85-02e81c07110c.png"
+                  alt="Certificate of Figma - Full View"
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  style={{ maxWidth: '95vw', maxHeight: '90vh' }}
+                />
+              </div>
+              
+              {/* Click outside to close hint */}
+              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70 text-sm">
+                Click outside or press ESC to close
+              </div>
             </div>
           </DialogContent>
         </Dialog>
