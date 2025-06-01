@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {['Home', 'About', 'Skills', 'Contact'].map((item, index) => (
+          {['Home', 'About', 'Skills', 'Achievements', 'Contact'].map((item, index) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
       {menuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            {['Home', 'About', 'Skills', 'Contact'].map((item, index) => (
+            {['Home', 'About', 'Skills', 'Achievements', 'Contact'].map((item, index) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
