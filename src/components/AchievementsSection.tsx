@@ -43,7 +43,7 @@ const AchievementsSection: React.FC = () => {
 
         {/* Full Screen Image Modal */}
         <Dialog open={isImageOpen} onOpenChange={setIsImageOpen}>
-          <DialogContent className="max-w-none w-full h-full p-0 bg-black/95 border-none">
+          <DialogContent className="max-w-none w-full h-full p-0 bg-black/95 border-none [&>button]:hidden">
             <div className="relative w-full h-full flex items-center justify-center p-4">
               {/* Custom Close Button */}
               <button
